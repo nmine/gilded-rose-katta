@@ -2,7 +2,7 @@ package com.gildedrose;
 
 public class ItemBuilder {
 
-    public static final String DEFAULT_NAME = "itemName";
+    public static final String DEFAULT_NAME = Items.STANDARD;
     public static final int DEFAULT_SELLIN = 10;
     public static final int DEFAULT_QUALITY = 10;
 

@@ -1,8 +1,9 @@
 package com.gildedrose;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import static com.gildedrose.Items.*;
+import static org.junit.Assert.assertEquals;
 
 public class GildedRoseTest {
 
@@ -10,15 +11,15 @@ public class GildedRoseTest {
     //At the end of each day our system lowers both values for every item
     public void can_lower_item_quality_and_sellIn_at_end_of_day() {
         //Given
-        GildedRose app = new GildedRose(new Item[] { new ItemBuilder()
+        GildedRose gildedRose = new GildedRose(new Item[] { new ItemBuilder()
                 .withQuality(10)
                 .withSellIn(10)
                 .build()
         });
         //When
-        app.updateQuality();
+        gildedRose.updateQuality();
         //Then
-        Item result = app.items[0];
+        Item result = gildedRose.getItem(0);
         assertEquals(9, result.quality);
         assertEquals(9, result.sellIn);
     }
@@ -35,7 +36,7 @@ public class GildedRoseTest {
         //When
         app.updateQuality();
         //Then
-        Item result = app.items[0];
+        Item result = app.getItem(0);
         assertEquals(8, result.quality);
         assertEquals(-1, result.sellIn);
     }
@@ -52,7 +53,7 @@ public class GildedRoseTest {
         //When
         app.updateQuality();
         //Then
-        Item result = app.items[0];
+        Item result = app.getItem(0);
         assertEquals(0, result.quality);
         assertEquals(9, result.sellIn);
     }
@@ -62,7 +63,7 @@ public class GildedRoseTest {
     public void Aged_Brie_item_increase_quality_the_older_it_gets() {
         //Given
         GildedRose app = new GildedRose(new Item[] { new ItemBuilder()
-                .withName("Aged Brie")
+                .withName(AGED_BRIE)
                 .withQuality(10)
                 .withSellIn(10)
                 .build()
@@ -70,7 +71,7 @@ public class GildedRoseTest {
         //When
         app.updateQuality();
         //Then
-        Item result = app.items[0];
+        Item result = app.getItem(0);
         assertEquals(11, result.quality);
         assertEquals(9, result.sellIn);
     }
@@ -80,7 +81,7 @@ public class GildedRoseTest {
     public void item_quality_increase_never_more_than_50() {
         //Given
         GildedRose app = new GildedRose(new Item[] { new ItemBuilder()
-                .withName("Aged Brie")
+                .withName(AGED_BRIE)
                 .withQuality(50)
                 .withSellIn(10)
                 .build()
@@ -88,7 +89,7 @@ public class GildedRoseTest {
         //When
         app.updateQuality();
         //Then
-        Item result = app.items[0];
+        Item result = app.getItem(0);
         assertEquals(50, result.quality);
     }
 
@@ -97,7 +98,7 @@ public class GildedRoseTest {
     public void sulfuras_item_never_has_to_be_sold_or_decrease_quality() {
         //Given
         GildedRose app = new GildedRose(new Item[] { new ItemBuilder()
-                .withName("Sulfuras, Hand of Ragnaros")
+                .withName(SULFURAS)
                 .withQuality(10)
                 .withSellIn(10)
                 .build()
@@ -105,7 +106,7 @@ public class GildedRoseTest {
         //When
         app.updateQuality();
         //Then
-        Item result = app.items[0];
+        Item result = app.getItem(0);
         assertEquals(10, result.quality);
         assertEquals(10, result.quality);
     }
@@ -115,7 +116,7 @@ public class GildedRoseTest {
     public void sulfuras_hasalways_80_quality() {
         //Given
         GildedRose app = new GildedRose(new Item[] { new ItemBuilder()
-                .withName("Sulfuras, Hand of Ragnaros")
+                .withName(SULFURAS)
                 .withQuality(80)
                 .withSellIn(10)
                 .build()
@@ -123,7 +124,7 @@ public class GildedRoseTest {
         //When
         app.updateQuality();
         //Then
-        Item result = app.items[0];
+        Item result = app.getItem(0);
         assertEquals(80, result.quality);
     }
 
@@ -133,7 +134,7 @@ public class GildedRoseTest {
     public void backstage_passes_item_increase_by_2_quality_when_they_are_10_or_less_days_left() {
         //Given
         GildedRose app = new GildedRose(new Item[] { new ItemBuilder()
-                .withName("Backstage passes to a TAFKAL80ETC concert")
+                .withName(BACKSTAGE)
                 .withQuality(10)
                 .withSellIn(10)
                 .build()
@@ -141,7 +142,7 @@ public class GildedRoseTest {
         //When
         app.updateQuality();
         //Then
-        Item result = app.items[0];
+        Item result = app.getItem(0);
         assertEquals(12, result.quality);
     }
 
@@ -151,7 +152,7 @@ public class GildedRoseTest {
     public void backstage_passes_item_increase_by_2_quality_when_they_are_3_or_less_days_left() {
         //Given
         GildedRose app = new GildedRose(new Item[] { new ItemBuilder()
-                .withName("Backstage passes to a TAFKAL80ETC concert")
+                .withName(BACKSTAGE)
                 .withQuality(10)
                 .withSellIn(5)
                 .build()
@@ -159,7 +160,7 @@ public class GildedRoseTest {
         //When
         app.updateQuality();
         //Then
-        Item result = app.items[0];
+        Item result = app.getItem(0);
         assertEquals(13, result.quality);
     }
 
