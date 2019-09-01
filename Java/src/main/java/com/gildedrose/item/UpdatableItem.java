@@ -3,12 +3,13 @@ package com.gildedrose.item;
 import com.gildedrose.Item;
 import com.gildedrose.documentation.DesignPattern;
 
-import static com.gildedrose.Items.MAX_QUALITY_VALUE;
-import static com.gildedrose.Items.MIN_QUALITY_VALUE;
+import static com.gildedrose.item.ItemFactory.MAX_QUALITY_VALUE;
+import static com.gildedrose.item.ItemFactory.MIN_QUALITY_VALUE;
 import static com.gildedrose.documentation.Type.TEMPLATE_METHODE;
 
 @DesignPattern(TEMPLATE_METHODE)
 public abstract class UpdatableItem{
+
     Item item;
 
     public UpdatableItem(Item item) {
@@ -38,11 +39,11 @@ public abstract class UpdatableItem{
         this.item.quality++;
     }
 
-    protected void decreaseQuality() {
+    void decreaseQuality() {
         this.item.quality--;
     }
 
-    protected int decreaseSeelIn() {
+    int decreaseSeelIn() {
         return this.item.sellIn--;
     }
 

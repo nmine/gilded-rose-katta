@@ -1,8 +1,15 @@
 package com.gildedrose;
 
+import com.gildedrose.documentation.DesignPattern;
+import com.gildedrose.documentation.Type;
+import com.gildedrose.item.ItemFactory;
+
+import static com.gildedrose.documentation.Type.*;
+
+@DesignPattern(BUILDER)
 public class ItemBuilder {
 
-    public static final String DEFAULT_NAME = Items.STANDARD;
+    public static final String DEFAULT_NAME = ItemFactory.STANDARD;
     public static final int DEFAULT_SELLIN = 10;
     public static final int DEFAULT_QUALITY = 10;
 

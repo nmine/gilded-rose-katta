@@ -16,10 +16,10 @@ public class StandardItem extends UpdatableItem {
     @Override
     void updateQuality() {
         decreaseQuality();
-        decreaseQualityForOutdatedItem();
+        decreaseQualityIfOutdatedItem();
     }
 
-    private void decreaseQualityForOutdatedItem() {
+    private void decreaseQualityIfOutdatedItem() {
         if (this.item.sellIn < 0) {
             decreaseQuality();
         }

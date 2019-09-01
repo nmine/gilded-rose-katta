@@ -1,11 +1,16 @@
 package com.gildedrose.documentation;
 
 public enum Type {
-    TEMPLATE_METHODE("Template Methode", "");
+
+    TEMPLATE_METHODE("Template Methode", "https://refactoring.guru/design-patterns/template-method"),
+
+    BUILDER("Builder", "https://refactoring.guru/design-patterns/builder");
+
     private String value;
+
     private String link;
 
-    private Type(String value, String lin) {
-        this.value = value;
+    Type(String value, String link) {
+        this.value = value;this.link = link;
     }
 }

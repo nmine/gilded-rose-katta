@@ -1,11 +1,8 @@
 package com.gildedrose;
 
-import com.gildedrose.item.AgedBrieItem;
-import com.gildedrose.item.BackstageItem;
-import com.gildedrose.item.StandardItem;
-import com.gildedrose.item.SulfurasItem;
+import com.gildedrose.item.*;
 
-import static com.gildedrose.Items.*;
+import static com.gildedrose.item.ItemFactory.*;
 import static java.util.Arrays.stream;
 
 class GildedRose {
@@ -17,22 +14,7 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        stream(this.items).forEach(item -> {
-            switch (item.name) {
-                case STANDARD:
-                    new StandardItem(item).update();
-                    break;
-                case SULFURAS:
-                    new SulfurasItem(item).update();
-                    break;
-                case AGED_BRIE:
-                    new AgedBrieItem(item).update();
-                    break;
-                case BACKSTAGE:
-                    new BackstageItem(item).update();
-                    break;
-            }
-        });
+        stream(this.items).forEach(item -> ItemFactory.from(item).update());
     }
 
     Item getItem(int index) {
